@@ -1,0 +1,17 @@
+Project Description
+
+ddl.sql - Schema Definition – set up all tables using create table statement. 
+          “SHOW ERRORS;” statements for debugging.
+
+insert.sql – Populate each table with at least 4 tuples. 
+             Also, update at least 2 tuples for each table.
+
+query.sql – Write 3 queries.
+
+drop.sql – Drop all tables and all views.
+
+run.sql – Call ddl.sql file to create tables and show tables by calling “DESC tablename” for all tables created. 
+          Then call insert.sql file and show each table content using “SELECT * from table name...” statements. 
+          Then it should call query.sql file. Finally, it should call drop.sql to drop all tables.
+
+output.txt – Including the script output created by run.sql file.
