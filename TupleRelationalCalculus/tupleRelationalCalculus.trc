@@ -1,0 +1,120 @@
+% Problem1
+% List the client ID, first and last names of clients who have never purchased any album with a song written by the artist 'Henry Brown'.
+
+% songWrittenByHenryBrown := {S.songCode, S.songTitle | song(S) and (exists W, A) (writtenBy(W) and artist(A) and S.songCode = W.songCode and W.artistID = A.artistID and A.firstName = 'Henry' and A.lastName = 'Brown')};
+% albumWithSongWrittenByHenryBrown := {A.albumCode, A.albumTitle | album(A) and (exists C, S) (composedOf(C) and songWrittenByHenryBrown(S) and C.songCode = S.songCode and C.albumCode = A.albumCode)};
+% clientPurchasedAlbum := {C.clientID, C.firstName, C.lastName, A.albumCode, A.albumTitle | client(C) and album(A) and (exists P) (purchasedBy(P) and C.clientID = P.clientID and A.albumCode = P.albumCode)};
+% clientPurchasedSongWrittenByHenryBrown := {C.clientID, C.firstName, C.lastName | clientPurchasedAlbum(C) and (exists A) (albumWithSongWrittenByHenryBrown(A) and A.albumCode = C.albumCode)};
+% answer1 := {C.clientID, C.firstName, C.lastName | client(C) and not (exists C1) (clientPurchasedSongWrittenByHenryBrown(C1) and C1.clientID = C.clientID)};
+
+% For Problem 1, it may take a long time to run the answer out.
+
+% achieve clientID, firstName, lastName
+answer1 := {C.clientID, C.firstName, C.lastName | client(C) 
+% to get the client who have bought the album with a song written by the artist 'Henry Brown', then negate it to get clients who have never purchased the specific album
+% exists client, purchasedBy, album, composedOf, writtenBy, and artists
+and not (exists C1, P, AL, CO, W, AR) (client(C1) and purchasedBy(P) and album(AL) and composedOf(CO) and writtenBy(W) and artist(AR) 
+% natural joining entity client, purchasedBy, album, composedOf, writtenBy, and artists using their common attributes
+and C1.clientID = C.clientID and C1.clientID = P.clientID and P.albumCode = AL.albumCode and AL.albumCode = CO.albumCode 
+% to specify the song that written by Henry Brown and natural joining attributes to get the client who have purchased the album with a song written by the artist 'Henry Brown'
+and CO.songCode = W.songCode and W.artistID = AR.artistID and AR.firstName = 'Henry' and AR.lastName = 'Brown')};
+
+ %-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Problem2
+% List the artist ID, first and last names of artists whose all songs they wrote were in the top 4. (rating <= 4 and rating >= 1) (this list should not include any artists who have not written any song).
+
+% songsInTopFour := {S.songCode, S.songTitle, T.rating | song(S) and topSongs(T) and T.songCode = S.songCode and T.rating <= 4 and T.rating >= 1};
+% artistWroteSongs := {A.artistID, A.firstName, A.lastName, S.songCode, S.songTitle | artist(A) and song(S) and (exists W) (writtenBy(W) and A.artistID = W.artistID and W.songCode = S.songCode)};
+% artistWroteSong := {A.artistID, A.firstName, A.lastName | artistWroteSongs(A)};
+% artistWroteAllSongsInTopFour := {A.artistID, A.firstName, A.lastName, S.songCode, S.songTitle, S.rating | artistWroteSongs(A) and songsInTopFour(S) and S.songCode = A.songCode};
+% answer2 := {A.artistID, A.firstName, A.lastName | artistWroteSong(A) and (exists B) (artistWroteSongs(B) and B.artistID = A.artistID and (forall S) (not (artistWroteSongs(S) and S.artistID = B.artistID) or ((exists C) (artistWroteAllSongsInTopFour(C) and C.artistID = S.artistID and S.songCode = C.songCode))))};
+
+% achieve artistID, firstName, lastName
+answer2 := {A.artistID, A.firstName, A.lastName | artist(A) 
+% exists artist, writtenBy, and song, by natural joining them to get the artists who have written songs, which means do not include any artists who have not written any song
+and (exists B, W, S) (artist(B) and writtenBy(W) and song(S) and B.artistID = A.artistID and B.artistID = W.artistID and W.songCode = S.songCode
+% P implies Q is equal to not P or Q, using forall to get all songs artists wrote were in the top 4 song list
+% P: artists who have written songs
+and (forall A1, W1) (not (artist(A1) and writtenBy(W1) and A1.artistID = W1.artistID and A1.artistID = B.artistID)
+% Q: exists artists whose written songs are in top 4
+% use exists to get the song written by artists and check if they are in top 4 song list, which will have the same artistID and songCode
+or ((exists C, W2, T) (artist(C) and writtenBy(W2) and topSongs(T) and C.artistID = W2.artistID and W2.songCode = T.songCode 
+and T.rating <= 4 and T.rating >= 1 and C.artistID = A1.artistID and W1.songCode = W2.songCode))))};
+
+ %-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Problem3
+% List the groupCode and groupNames of musical groups who have exactly one album published.
+
+% groupWithAlbum := {G.groupCode, G.groupName, A.albumCode, A.albumTitle | musicalGroup(G) and album(A) and G.groupCode = A.groupCode};
+% musicalGroupPublishedAtLeastTwoAlbums := {G.groupCode, G.groupName, G.albumTitle | groupWithAlbum(G) and (exists A) (groupWithAlbum(A) and A.groupCode = G.groupCode and A.albumCode <> G.albumCode)};
+% musicalGroupPublishedExactlyOneAlbum := {G.groupCode, G.groupName, G.albumTitle | groupWithAlbum(G) and not ((exists A) (groupWithAlbum(A) and A.groupCode = G.groupCode and A.albumCode <> G.albumCode))};
+%answer3 := {G.groupCode, G.groupName | musicalGroupPublishedExactlyOneAlbum(G)};
+
+% achieve groupCode, groupName, exists album and natural joining musical groups and albums by group code
+% get the muical groups that have at least one album that published first
+answer3 := {G.groupCode, G.groupName | musicalGroup(G) and (exists A) (album(A) and G.groupCode = A.groupCode) 
+% musical groups who have exactly one album published = musical groups who have at least one album published - musical groups who have at least two albums published
+% get the negation of exists albums that has the same group code, but different album code, which means the musical groups who have at least two albums published
+and not ((exists A1, A2) (album(A1) and album(A2) and A1.groupCode = G.groupCode and A2.groupCode = G.groupCode 
+and A1.groupCode = A2.groupCode and A1.albumCode <> A2.albumCode))};
+
+ %-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Problem4
+% Find musical groups who had at least one album in the top 5 (rating <= 5 and rating >= 1) in each of 2011 and 2013 (a top 5 album in 2011 and a top 5 album in 2013), and list their groupCode and groupName along with such top 5 album's albumCode and albumTitle.
+
+% musicalGroupWithAlbum := {G.groupCode, G.groupName, A.albumCode, A.albumTitle | musicalGroup(G) and album(A) and G.groupCode = A.groupCode};
+% albumInTopFiveIn2011 := {A.albumCode, A.albumTitle, A.year, G.groupCode | album(A) and musicalGroup(G) and A.groupCode = G.groupCode and A.year = 2011 and (exists T) (topAlbums(T) and T.albumCode = A.albumCode and T.rating <= 5 and T.rating >= 1)};
+% albumInTopFiveIn2013 := {A.albumCode, A.albumTitle, A.year, G.groupCode | album(A) and musicalGroup(G) and A.groupCode = G.groupCode and A.year = 2013 and (exists T) (topAlbums(T) and T.albumCode = A.albumCode and T.rating <= 5 and T.rating >= 1)};
+% groupHasTopFiveMusicIn2011And2013 := {G.groupCode, G.groupName, A.albumCode, A.albumTitle | musicalGroup(G) and album(A) and G.groupCode = A.groupCode and (exists G1, A0) (musicalGroup(G1) and album(A0) and G1.groupCode = G.groupCode and A0.groupCode = G1.groupCode and (exists A1, A2) (albumInTopFiveIn2011(A1) and albumInTopFiveIn2013(A2) and A1.groupCode = G1.groupCode and A2.groupCode = G1.groupCode and A1.groupCode = A2.groupCode and A1.albumCode <> A2.albumCode))};
+% answer4 := {G.groupCode, G.groupName, G.albumCode, G.albumTitle | groupHasTopFiveMusicIn2011And2013(G) and (exists A1, A2) (albumInTopFiveIn2011(A1) and albumInTopFiveIn2013(A2) and (A1.albumCode = G.albumCode or A2.albumCode = G.albumCode) and A1.groupCode = A2.groupCode and A2.albumCode <> A1.albumCode)};
+
+% achieve groupCode, groupName, albumCode, albumTitle, and natural joining nusical group and album by using the same groupCode
+answer4 := {G.groupCode, G.groupName, A.albumCode, A.albumTitle | musicalGroup(G) and album(A) and G.groupCode = A.groupCode
+% exists G1 and A0, which to represent the musical groups and albums' information (a top 5 album in 2011 and a top 5 album in 2013)
+% the musical groups who have at least one album in the top 5 in each of 2011 and 2013
+% by using G1.groupCode = G.groupCode and A0.albumCode = A.albumCode to return the final tuples
+and (exists G1, A0) (musicalGroup(G1) and album(A0) and G1.groupCode = G.groupCode and A0.groupCode = G1.groupCode and A0.albumCode = A.albumCode
+% exists the musical group G0 that has both A1 and A2, which means has both top 5 albums in 2011 and 2013
+% exists A1 that contains albums that were in the top 5 in 2011 year
+and (exists A1, A2, G0) (album(A1) and musicalGroup(G0) and A1.groupCode = G0.groupCode and A1.year = 2011
+% albums that are in topSongs and have the rating in top 5 in year 2011 
+and (exists T1) (topAlbums(T1) and T1.albumCode = A1.albumCode and T1.rating <= 5 and T1.rating >= 1) 
+% exists the albums as A2 which were in the top 5 in 2013 year
+and (album(A2) and A2.groupCode = G0.groupCode and A2.year = 2013 
+% albums that are in topSongs and have the rating in top 5 in year 2013
+and (exists T2) (topAlbums(T2) and T2.albumCode = A2.albumCode and T2.rating <= 5 and T2.rating >= 1)) 
+% make sure A1 and A2 are in the same group and they have the different album code
+and A1.groupCode = G1.groupCode and A2.groupCode = G1.groupCode and A1.groupCode = A2.groupCode and A1.albumCode <> A2.albumCode)
+% the following steps will get the same tuples that have both top 5 albums in 2011 and 2013, but only return those top 5 albums' information
+% albums that are in topSongs and have the rating in top 5 in year 2011 
+and (exists A3, A4, G2) (album(A3) and musicalGroup(G2) and A3.groupCode = G2.groupCode and A3.year = 2011 
+and (exists T3) (topAlbums(T3) and T3.albumCode = A3.albumCode and T3.rating <= 5 and T3.rating >= 1) 
+% albums that are in topSongs and have the rating in top 5 in year 2013
+and (album(A4) and A4.groupCode = G2.groupCode and A4.year = 2013 
+and (exists T4) (topAlbums(T4) and T4.albumCode = A4.albumCode and T4.rating <= 5 and T4.rating >= 1))
+% by natural joining A3, A0 or A4, A0, to make the album A0 have both information that are in top 5 in 2011 and 2013
+and (A3.albumCode = A0.albumCode or A4.albumCode = A0.albumCode) and A3.groupCode = A4.groupCode and A4.albumCode <> A3.albumCode))};
+
+
+ %-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Problem5
+% List the client ID, first and last names of clients who purchased an album with the cheapest price, along with such a album's titles.
+
+% clientPurchasedAlbumWithPrice := {C.clientID, C.firstName, C.lastName, A.albumTitle, P.price | client(C) and album(A) and purchasedBy(P) and C.clientID = P.clientID and A.albumCode = P.albumCode};
+% clientPurchasedAlbumWithCheapestPrice := {C.clientID, C.firstName, C.lastName, C.albumTitle, C.price | clientPurchasedAlbumWithPrice(C) and not ((exists C1) (clientPurchasedAlbumWithPrice(C1) and C.price > C1.price))};
+% answer5 := {C.clientID, C.firstName, C.lastName, C.albumTitle | clientPurchasedAlbumWithCheapestPrice(C) };
+
+% achieve clientID, firstName, lastName, albumTitle, and natural joining client and purchasedBy by clientID, do not natural join purchasedBy and album by albumCode
+% set purchasedBy as one of the global varibles to avoid eliminating the tuple that has same clientID and albumCode but different price
+answer5 := {P.clientID, C.firstName, C.lastName, A.albumTitle | client(C) and album(A) and purchasedBy(P) and P.clientID = C.clientID
+% exists purchasedBy P1 to compare tuples, P1 would be the local variable represents the album with the cheapest price
+% set P1 and P have the same clientID is to connect varibles, then can get the clients' information
+and (exists P1) (purchasedBy(P1) and P1.clientID = P.clientID and P1.albumCode = A.albumCode and P1.price <> P.price
+% exists purchasedBy P2 to compare the price of P1 and P2, to get tuple that has the minimal price
+% the negation of tuples, if P2 has a lower price, then the price of P1 is not the cheapest
+and not ((exists P2) (purchasedBy(P2) and P1.price > P2.price)))};
+
