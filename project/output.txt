@@ -1,0 +1,835 @@
+
+Table ENGINEER created.
+
+
+Table PROJECT created.
+
+
+Table MANAGER created.
+
+
+Table MANAGER altered.
+
+
+Table MANAGES created.
+
+
+Table MANAGES altered.
+
+
+Table ENGINEER_ASSIGNPROJECT created.
+
+
+Table ENGINEER_ASSIGNPROJECT altered.
+
+
+Table ENGINEER_ASSIGNREPORT created.
+
+
+Table ENGINEER_ASSIGNREPORT altered.
+
+
+Table BUG created.
+
+
+Table BUG_REPORT created.
+
+
+Table WORKS_ON created.
+
+
+Table WORKS_ON altered.
+
+
+Table SUBMITS created.
+
+
+Table SUBMITS altered.
+
+
+Table UPDATES created.
+
+Name    Null?    Type         
+------- -------- ------------ 
+NAME    NOT NULL VARCHAR2(30) 
+EMPID   NOT NULL VARCHAR2(10) 
+HOURS   NOT NULL FLOAT(126)   
+PAYRATE NOT NULL FLOAT(126)   
+Name           Null?    Type         
+-------------- -------- ------------ 
+PROJID         NOT NULL VARCHAR2(10) 
+PROJ_NAME      NOT NULL VARCHAR2(30) 
+PROJECT_STATUS NOT NULL VARCHAR2(12) 
+MANAGEREMPID            VARCHAR2(10) 
+START_DATE              DATE         
+END_DATE                DATE         
+BUDGET         NOT NULL FLOAT(126)   
+Name         Null?    Type         
+------------ -------- ------------ 
+MANAGEREMPID NOT NULL VARCHAR2(10) 
+Name         Null?    Type         
+------------ -------- ------------ 
+PROJECTID    NOT NULL VARCHAR2(20) 
+MANAGEREMPID          VARCHAR2(10) 
+Name      Null?    Type         
+--------- -------- ------------ 
+ASSIGNPID NOT NULL VARCHAR2(20) 
+EMPID     NOT NULL VARCHAR2(10) 
+Name           Null?    Type         
+-------------- -------- ------------ 
+ASSIGNREPORTID NOT NULL VARCHAR2(20) 
+EMPID          NOT NULL VARCHAR2(10) 
+Name     Null?    Type          
+-------- -------- ------------- 
+BUGID    NOT NULL VARCHAR2(10)  
+BUG_TYPE NOT NULL VARCHAR2(50)  
+BUG_DESC NOT NULL VARCHAR2(200) 
+Name         Null?    Type          
+------------ -------- ------------- 
+REPORTID     NOT NULL VARCHAR2(20)  
+SUBMIT_ENGID NOT NULL VARCHAR2(20)  
+ASSIGN_ENGID NOT NULL VARCHAR2(20)  
+BUGID        NOT NULL VARCHAR2(10)  
+PROJECTID    NOT NULL VARCHAR2(20)  
+REPORT_DESC  NOT NULL VARCHAR2(200) 
+REPORT_DATE  NOT NULL DATE          
+FIX_DATE              DATE          
+Name     Null?    Type         
+-------- -------- ------------ 
+REPORTID NOT NULL VARCHAR2(20) 
+EMPID             VARCHAR2(10) 
+STATUS   NOT NULL VARCHAR2(12) 
+Name     Null?    Type         
+-------- -------- ------------ 
+REPORTID NOT NULL VARCHAR2(20) 
+EMPID    NOT NULL VARCHAR2(10) 
+Name     Null?    Type         
+-------- -------- ------------ 
+BUGID    NOT NULL VARCHAR2(10) 
+REPORTID NOT NULL VARCHAR2(20) 
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+2 rows updated.
+
+
+3 rows updated.
+
+
+3 rows updated.
+
+
+2 rows updated.
+
+
+3 rows updated.
+
+
+2 rows updated.
+
+
+2 rows updated.
+
+
+3 rows updated.
+
+
+3 rows updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+NAME                           EMPID           HOURS    PAYRATE
+------------------------------ ---------- ---------- ----------
+James                          11111              20         12
+Sally                          22222              25         12
+John                           33333              27         14
+Vanessa                        44444              23         13
+Sean                           55555              28         15
+Zoe                            66666              26         15
+Franklin                       77777              32         16
+William                        88888              35         15
+Ashley                         99999              24         14
+
+9 rows selected. 
+
+
+PROJID     PROJ_NAME                      PROJECT_STAT MANAGEREMP START_DAT END_DATE      BUDGET
+---------- ------------------------------ ------------ ---------- --------- --------- ----------
+1          project1                       in progress  88888      21-FEB-21                  500
+2          project2                       in progress  11111      14-FEB-21                  220
+3          project3                       in progress  99999      08-DEC-20                  420
+4          project4                       in progress  22222      12-JAN-21                  600
+5          project5                       in progress  55555      06-JAN-21                  520
+6          project6                       not started  44444                                 310
+7          project7                       completed    33333      13-OCT-20 30-JAN-21        390
+8          project8                       completed    77777      18-NOV-20 19-FEB-21        500
+9          project9                       completed    66666      05-DEC-20 06-MAR-21        630
+
+9 rows selected. 
+
+
+MANAGEREMP
+----------
+11111
+33333
+55555
+66666
+77777
+88888
+99999
+
+7 rows selected. 
+
+
+PROJECTID            MANAGEREMP
+-------------------- ----------
+1                    88888     
+2                    11111     
+3                    99999     
+4                    55555     
+5                    55555     
+6                    88888     
+7                    33333     
+8                    77777     
+9                    66666     
+
+9 rows selected. 
+
+
+ASSIGNPID            EMPID     
+-------------------- ----------
+2                    11111     
+6                    11111     
+2                    22222     
+3                    22222     
+4                    22222     
+8                    22222     
+5                    33333     
+7                    33333     
+3                    44444     
+6                    44444     
+9                    44444     
+
+ASSIGNPID            EMPID     
+-------------------- ----------
+4                    55555     
+5                    55555     
+7                    55555     
+8                    55555     
+2                    66666     
+9                    66666     
+1                    77777     
+8                    77777     
+1                    88888     
+9                    88888     
+3                    99999     
+
+ASSIGNPID            EMPID     
+-------------------- ----------
+5                    99999     
+
+23 rows selected. 
+
+
+ASSIGNREPORTID       EMPID     
+-------------------- ----------
+001                  11111     
+003                  33333     
+004                  66666     
+002                  88888     
+
+
+BUGID      BUG_TYPE                                           BUG_DESC                                                                                                                                                                                                
+---------- -------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1          Incorrect calculations                             The bug caused by the wrong algorithm.                                                                                                                                                                  
+2          Error handling errors                              User cannot receive an informative message not to do the same mistake again.                                                                                                                            
+3          Functional errors                                  The expected result of operations in function 1 did not coincide with an actual one.                                                                                                                    
+4          Syntactic errors                                   While testing GUI of the product, the correspondence of the elements with the documentation do not match.                                                                                               
+5          Missing command errors                             Cannot close a pop-up window without performing some actions.                                                                                                                                           
+6          Boundary related errors                            Too many characters in a text entry.                                                                                                                                                                    
+7          Incorrect calculations                             The bug caused by data type mismatch.                                                                                                                                                                   
+8          Boundary related errors                            Amount of maximum number of simultaneous users is uncertain.                                                                                                                                            
+
+8 rows selected. 
+
+
+REPORTID             SUBMIT_ENGID         ASSIGN_ENGID         BUGID      PROJECTID            REPORT_DESC                                                                                                                                                                                              REPORT_DA FIX_DATE 
+-------------------- -------------------- -------------------- ---------- -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------- ---------
+001                  77777                11111                1          1                    bugId 1, the bug caused by the wrong algorithm.                                                                                                                                                          26-JAN-21 02-FEB-21
+002                  55555                88888                2          5                    bugId2, user cannot receive an informative message not to do the same mistake again.                                                                                                                     08-FEB-21 15-FEB-21
+003                  11111                33333                6          2                    bugId6, too many characters in a text entry.                                                                                                                                                             16-FEB-21 26-FEB-21
+004                  22222                66666                5          4                    bugId5, cannot close a pop-up window without performing some actions.                                                                                                                                    19-FEB-21          
+
+
+REPORTID             EMPID      STATUS      
+-------------------- ---------- ------------
+001                  11111      completed   
+002                  88888      completed   
+003                  33333      completed   
+004                  66666      in progress 
+
+
+REPORTID             EMPID     
+-------------------- ----------
+001                  77777     
+002                  55555     
+003                  11111     
+004                  22222     
+
+
+BUGID      REPORTID            
+---------- --------------------
+1          001                 
+2          002                 
+5          004                 
+6          003                 
+
+
+EMPID      NAME                           PROJID     PROJ_NAME                      PROJECT_STAT MANAGEREMP START_DAT END_DATE 
+---------- ------------------------------ ---------- ------------------------------ ------------ ---------- --------- ---------
+11111      James                          2          project2                       in progress  11111      14-FEB-21          
+11111      James                          6          project6                       not started  44444                         
+22222      Sally                          4          project4                       in progress  22222      12-JAN-21          
+22222      Sally                          3          project3                       in progress  99999      08-DEC-20          
+22222      Sally                          2          project2                       in progress  11111      14-FEB-21          
+22222      Sally                          8          project8                       completed    77777      18-NOV-20 19-FEB-21
+33333      John                           5          project5                       in progress  55555      06-JAN-21          
+33333      John                           7          project7                       completed    33333      13-OCT-20 30-JAN-21
+44444      Vanessa                        3          project3                       in progress  99999      08-DEC-20          
+44444      Vanessa                        6          project6                       not started  44444                         
+44444      Vanessa                        9          project9                       completed    66666      05-DEC-20 06-MAR-21
+
+EMPID      NAME                           PROJID     PROJ_NAME                      PROJECT_STAT MANAGEREMP START_DAT END_DATE 
+---------- ------------------------------ ---------- ------------------------------ ------------ ---------- --------- ---------
+55555      Sean                           4          project4                       in progress  22222      12-JAN-21          
+55555      Sean                           8          project8                       completed    77777      18-NOV-20 19-FEB-21
+55555      Sean                           7          project7                       completed    33333      13-OCT-20 30-JAN-21
+55555      Sean                           5          project5                       in progress  55555      06-JAN-21          
+66666      Zoe                            2          project2                       in progress  11111      14-FEB-21          
+66666      Zoe                            9          project9                       completed    66666      05-DEC-20 06-MAR-21
+77777      Franklin                       1          project1                       in progress  88888      21-FEB-21          
+77777      Franklin                       8          project8                       completed    77777      18-NOV-20 19-FEB-21
+88888      William                        9          project9                       completed    66666      05-DEC-20 06-MAR-21
+88888      William                        1          project1                       in progress  88888      21-FEB-21          
+99999      Ashley                         3          project3                       in progress  99999      08-DEC-20          
+
+EMPID      NAME                           PROJID     PROJ_NAME                      PROJECT_STAT MANAGEREMP START_DAT END_DATE 
+---------- ------------------------------ ---------- ------------------------------ ------------ ---------- --------- ---------
+99999      Ashley                         5          project5                       in progress  55555      06-JAN-21          
+
+23 rows selected. 
+
+
+PROJID     EMPID      NAME                           PROJ_NAME                      PROJECT_STAT
+---------- ---------- ------------------------------ ------------------------------ ------------
+1          88888      William                        project1                       in progress 
+1          77777      Franklin                       project1                       in progress 
+2          66666      Zoe                            project2                       in progress 
+2          22222      Sally                          project2                       in progress 
+2          11111      James                          project2                       in progress 
+3          22222      Sally                          project3                       in progress 
+3          99999      Ashley                         project3                       in progress 
+3          44444      Vanessa                        project3                       in progress 
+4          22222      Sally                          project4                       in progress 
+4          55555      Sean                           project4                       in progress 
+5          99999      Ashley                         project5                       in progress 
+
+PROJID     EMPID      NAME                           PROJ_NAME                      PROJECT_STAT
+---------- ---------- ------------------------------ ------------------------------ ------------
+5          33333      John                           project5                       in progress 
+5          55555      Sean                           project5                       in progress 
+
+13 rows selected. 
+
+
+PROJID     PROJ_NAME                      START_DAT END_DATE      BUDGET
+---------- ------------------------------ --------- --------- ----------
+2          project2                       14-FEB-21                  220
+
+
+MANAGEREMP PROJECTID            PROJ_NAME                      PROJECT_STAT
+---------- -------------------- ------------------------------ ------------
+88888      1                    project1                       in progress 
+11111      2                    project2                       in progress 
+99999      3                    project3                       in progress 
+55555      4                    project4                       in progress 
+55555      5                    project5                       in progress 
+
+
+EMPID      ASSIGNPID            MANAGEREMP NAME                          
+---------- -------------------- ---------- ------------------------------
+11111      2                    11111      James                         
+22222      2                    11111      Sally                         
+22222      3                    99999      Sally                         
+22222      4                    55555      Sally                         
+33333      5                    55555      John                          
+44444      3                    99999      Vanessa                       
+55555      4                    55555      Sean                          
+55555      5                    55555      Sean                          
+66666      2                    11111      Zoe                           
+77777      1                    88888      Franklin                      
+88888      1                    88888      William                       
+
+EMPID      ASSIGNPID            MANAGEREMP NAME                          
+---------- -------------------- ---------- ------------------------------
+99999      3                    99999      Ashley                        
+99999      5                    55555      Ashley                        
+
+13 rows selected. 
+
+
+Table UPDATES dropped.
+
+
+Table SUBMITS dropped.
+
+
+Table WORKS_ON dropped.
+
+
+Table BUG_REPORT dropped.
+
+
+Table BUG dropped.
+
+
+Table ENGINEER_ASSIGNREPORT dropped.
+
+
+Table ENGINEER_ASSIGNPROJECT dropped.
+
+
+Table MANAGES dropped.
+
+
+Table MANAGER dropped.
+
+
+Table PROJECT dropped.
+
+
+Table ENGINEER dropped.
+
